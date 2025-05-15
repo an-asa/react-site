@@ -1,16 +1,21 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { MenuIcon, MoonIcon } from "lucide-react"
+import { MenuIcon, MoonIcon, SunIcon } from "lucide-react"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { useTheme } from "next-themes"
 
 export default function Header() {
+  const { theme, setTheme } = useTheme()
+
   return (
-    <header className='sticky top-0 bg-background/30 backdrop-blur-md z-50 border-b border-b-foreground/10'>
+    <header className="sticky top-0 bg-[url('../resources/William_Morris_-_tilable_vectorized_Venetian.svg')] border-b z-50 backdrop-blur-sm">
       <nav className='mx-auto max-w-3xl flex items-center justify-between gap-10 p-6'>
         {/* Large screen navigation */}
-        <ul className='hidden sm:flex gap-8 items-center justify-center font-medium'>
-          <li className='mr-2'>
-          <Link href="/" className='font-bold'>JZ</Link>
+        <ul className='hidden sm:flex gap-8 items-center justify-center font-bold '>
+          <li className='mr-12 text-2xl'>
+            <Link href="/">Jan Zygadlo</Link>
           </li>
           <li className='hover:text-foreground/50 transition-colors'>
             <Link href='#'>About</Link>
@@ -25,7 +30,7 @@ export default function Header() {
         {/* Small screen navigation */}
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant='outline' size='icon' className='sm:hidden'>
+            <Button variant='ghost' size='icon' className='sm:hidden'>
               <MenuIcon />
             </Button>
           </SheetTrigger>
@@ -48,9 +53,10 @@ export default function Header() {
             </ul>
           </SheetContent>
         </Sheet>
-        <Link href="/" className='sm:hidden font-bold'>JZ</Link>
-        <Button variant='outline' size='icon'>
-          <MoonIcon />
+        <Link href="/" className='sm:hidden font-bold text-2xl'>Jan Zygadlo</Link>
+        <Button variant='ghost' size='icon' onClick={theme == "light" ? () => setTheme("dark") : () => setTheme("light")}>
+          <SunIcon className='visible dark:hidden'/>
+          <MoonIcon className='hidden dark:flex'/>
         </Button>
       </nav>
     </header>
