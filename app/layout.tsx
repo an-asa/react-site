@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poltawski_Nowy } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import ThemeProvider from "@/components/theme-provider";
+
+const poltawskiNowy = Poltawski_Nowy({
+  variable: "--font-poltawski-nowy",
+  subsets: ["latin"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,11 +33,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poltawskiNowy.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <Header />
-          {children}
+          <main className="max-w-3xl min-h-screen mx-auto mt-26 p-8">
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
       </body>

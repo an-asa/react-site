@@ -10,23 +10,8 @@ export default function Header() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <header className="sticky top-0 bg-[url('../resources/William_Morris_-_tilable_vectorized_Venetian.svg')] border-b z-50 backdrop-blur-sm">
-      <nav className='mx-auto max-w-3xl flex items-center justify-between gap-10 p-6'>
-        {/* Large screen navigation */}
-        <ul className='hidden sm:flex gap-8 items-center justify-center font-bold '>
-          <li className='mr-12 text-2xl'>
-            <Link href="/">Jan Zygadlo</Link>
-          </li>
-          <li className='hover:text-foreground/50 transition-colors'>
-            <Link href='#'>About</Link>
-          </li>
-          <li className='hover:text-foreground/50 transition-colors'>
-            <Link href='#'>About</Link>
-          </li>
-          <li className='hover:text-foreground/50 transition-colors'>
-            <Link href='#'>About</Link>
-          </li>
-        </ul>
+    <header className="fixed w-full top-0 border-b z-50 bg-card">
+      <nav className='mx-auto max-w-4xl flex justify-between p-4'>
         {/* Small screen navigation */}
         <Sheet>
           <SheetTrigger asChild>
@@ -35,12 +20,10 @@ export default function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side='left' className='max-w-3xs'>
-            <SheetHeader className='border-b-2 border-b-foreground/10'>
-              <SheetTitle className='font-bold'>
-                <Link href="/">JZ</Link>
-              </SheetTitle>
+            <SheetHeader>
+              <SheetTitle className='sr-only'>Navigation</SheetTitle>
             </SheetHeader>
-            <ul className='grid gap-8 px-4 mt-2'>
+            <ul className='grid gap-8'>
               <li className='hover:text-foreground/50 transition-colors'>
                 <Link href='#'>About</Link>
               </li>
@@ -53,7 +36,25 @@ export default function Header() {
             </ul>
           </SheetContent>
         </Sheet>
-        <Link href="/" className='sm:hidden font-bold text-2xl'>Jan Zygadlo</Link>
+        <div className="flex gap-8">
+          <div className="-my-4 p-4 tracking-tighter font-serif text-white font-bold text-3xl bg-[url('../resources/William_Morris_-_tilable_vectorized_Venetian.svg')] bg-size-[auto_300px] bg-emerald-500 dark:bg-emerald-900/50">
+            <div>
+              <Link href="/">Jan Zygadło</Link>
+            </div>
+          </div>
+          {/* Large screen navigation */}
+          <ul className='hidden sm:flex gap-8 items-center justify-center'>
+            <li className='hover:text-foreground/50 transition-colors'>
+              <Link href='#'>About</Link>
+            </li>
+            <li className='hover:text-foreground/50 transition-colors'>
+              <Link href='#'>About</Link>
+            </li>
+            <li className='hover:text-foreground/50 transition-colors'>
+              <Link href='#'>About</Link>
+            </li>
+          </ul>
+        </div>
         <Button variant='ghost' size='icon' onClick={theme == "light" ? () => setTheme("dark") : () => setTheme("light")}>
           <SunIcon className='visible dark:hidden'/>
           <MoonIcon className='hidden dark:flex'/>
