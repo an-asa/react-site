@@ -15,7 +15,7 @@ export default function Header() {
         {/* Small screen navigation */}
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant='ghost' size='icon' className='sm:hidden'>
+            <Button variant='ghost' size='icon' className='md:hidden'>
               <MenuIcon />
             </Button>
           </SheetTrigger>
@@ -37,13 +37,13 @@ export default function Header() {
           </SheetContent>
         </Sheet>
         <div className="flex gap-8">
-          <div className="-my-4 p-4 tracking-tighter font-serif text-white font-bold text-3xl bg-[url('../resources/William_Morris_-_tilable_vectorized_Venetian.svg')] bg-size-[auto_300px] bg-emerald-500 dark:bg-emerald-900/50">
+          <div className="-my-4 p-4 tracking-tighter font-serif text-white font-bold text-3xl bg-[url('/William_Morris_-_tilable_vectorized_Venetian.svg')] bg-size-[auto_300px] bg-emerald-500">
             <div>
               <Link href="/">Jan Zygadło</Link>
             </div>
           </div>
           {/* Large screen navigation */}
-          <ul className='hidden sm:flex gap-8 items-center justify-center'>
+          <ul className='hidden md:flex gap-8 items-center justify-center'>
             <li className='hover:text-foreground/50 transition-colors'>
               <Link href='#'>About</Link>
             </li>

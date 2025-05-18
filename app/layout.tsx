@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <Header />
-          <main className="max-w-3xl min-h-screen mx-auto mt-26 p-8">
+          <main>
             {children}
           </main>
           <Footer />
