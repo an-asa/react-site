@@ -1,5 +1,6 @@
 import { Separator } from "./ui/separator"
 import { Button } from "./ui/button"
+import Link from "next/link"
 import { MapPinIcon, MailIcon, DownloadIcon } from "lucide-react"
 
 export default function Hero() {
@@ -23,7 +24,7 @@ export default function Hero() {
             <p>
               I&#39;m currently looking for a new opportunity to work on new,
               exciting projects. If you think I&#39;d fit into your team, feel
-              free to contact me.
+              free to <Link href='/contact' className="text-white/70 underline-offset-4 underline hover:text-white transition-colors">contact me.</Link>
             </p>
             <Button asChild variant="accent" className='mt-8'>
                 <a href='/cv_jzygadlo.pdf' className="flex" download>
