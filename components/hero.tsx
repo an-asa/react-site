@@ -25,7 +25,7 @@ export default function Hero() {
               exciting projects. If you think I&#39;d fit into your team, feel
               free to contact me.
             </p>
-            <Button asChild className='mt-8 bg-emerald-500 text-white'>
+            <Button asChild variant="accent" className='mt-8'>
                 <a href='/cv_jzygadlo.pdf' className="flex" download>
                     <DownloadIcon className='mt-0.5 h-4 w-4' />
                     <span className='text-sm'>Download my CV</span> 
