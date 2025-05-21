@@ -1,52 +1,123 @@
-import { useForm, ValidationError } from "@formspree/react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
-import { Label } from "./ui/label"
+"use client"
+
+import { useForm as useFormspreeForm } from "@formspree/react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from "./ui/card"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "./ui/form"
+import { useState } from "react"
 
 export default function ContactForm() {
-  const [state, handleSubmit] = useForm("xqaqjbqk")
+  const [state, handleSubmit] = useFormspreeForm("xqaqjbqk")
+  const [sentEmail, setSentEmail] = useState("")
+  const [sentMessage, setSentMessage] = useState("")
+  const formSchema = z.object({
+    email: z.string().email(),
+    message: z.string().min(10, { message: "Your message must be at least 10 characters long." }).max(500, {message: "Your message must be shorter than 500 characters."})
+  })
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      message: ""
+    }
+  })
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    handleSubmit(data)
+    setSentEmail(data.email)
+    setSentMessage(data.message)
+  }
+
   if (state.succeeded) {
     return (
-      <Card className="items-center"><p>Your message has been sent. Thank you!</p></Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Your message has been sent. Thank you!</CardTitle>
+        </CardHeader>
+        <CardContent className='font-mono text-foreground/80 text-sm break-all'>
+          <p>from: {sentEmail}</p>
+          <p>---</p>
+          <p>{sentMessage}</p>
+        </CardContent>
+      </Card>
     )
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <Card>
-        <CardHeader>
-          <CardTitle>Contact me</CardTitle>
-          <CardDescription>Let&apos;s get in touch.</CardDescription>
-        </CardHeader>
-        <CardContent>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-2">
-                <Label htmlFor='email'>Email address</Label>
-                <Input placeholder='youraddress@domain.com' id='email' type='email' name='email' />
-                <ValidationError
-                  prefix='Email'
-                  field='email'
-                  errors={state.errors}
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <Card>
+          <CardHeader>
+            <CardTitle>Contact me</CardTitle>
+            <CardDescription>Let&apos;s get in touch.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className='grid w-full items-center gap-4'>
+              <div className='flex flex-col space-y-2'>
+                <FormField
+                  control={form.control}
+                  name='email'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email address</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder='youraddress@domain.com'
+                          id='email'
+                          type='email'
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
               </div>
-              <div className="flex flex-col space-y-2">
-                <Label htmlFor='message'>Your message</Label>
-                <Textarea placeholder='Hello, Jan...' id='message' name='message' />
-                <ValidationError
-                  prefix='Message'
-                  field='message'
-                  errors={state.errors}
+              <div className='flex flex-col space-y-2'>
+                <FormField
+                  control={form.control}
+                  name='message'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder='Hello, Jan...'
+                          id='message'
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
               </div>
             </div>
-        </CardContent>
-        <CardFooter>
-          <Button variant='accent' type='submit' disabled={state.submitting}>
-            Submit
-          </Button>
-        </CardFooter>
-      </Card>
-    </form>
+          </CardContent>
+          <CardFooter>
+            <Button variant='accent' type='submit' disabled={state.submitting}>
+              Submit
+            </Button>
+          </CardFooter>
+        </Card>
+      </form>
+    </Form>
   )
 }
