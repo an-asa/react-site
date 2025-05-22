@@ -1,4 +1,3 @@
-import Hero from "@/components/hero";
 import { ConstructionIcon } from "lucide-react";
 
 export default function Projects() {
