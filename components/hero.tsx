@@ -11,18 +11,16 @@ export default function Hero() {
           <div className='inline-block text-pretty'>
             <h1 className='font-serif text-4xl font-bold'>Hi, I&#39;m Jan!</h1>
             <h2 className='text-xl'>
-              I&#39;m a software engineer with a strong basis in testing and
+              I&#39;m a software specialist with solid experience in testing and
               test automation.
             </h2>
             <Separator className='my-6 bg-white' />
             <p>
-              Having worked on national-scale projects in the government sector
-              for over five years, I bring a wide set of skills to your dev
-              team.
+              With over five years of experience with complex government projects, I&#39;ve learned how to collaborate, adapt and contribute where it counts.
             </p>
             <br />
             <p>
-              I&#39;m currently looking for a new opportunity to work on new,
+              I&#39;m currently looking for an opportunity to work on new,
               exciting projects. If you think I&#39;d fit into your team, feel
               free to <Link href='/contact' className="text-white/70 underline-offset-4 underline hover:text-white transition-colors">contact me.</Link>
             </p>

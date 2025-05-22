@@ -19,8 +19,7 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { name: "Home", href: "/" },
-  { name: "Contact me", href: "/contact" },
-  { name: "About me", href: "/about" }
+  { name: "Contact me", href: "/contact" }
 ]
 
 export function LargeScreenNavigation({

@@ -24,6 +24,7 @@ import {
   FormMessage
 } from "./ui/form"
 import { useState } from "react"
+import Link from "next/link"
 
 export default function ContactForm() {
   const [state, handleSubmit] = useFormspreeForm("xqaqjbqk")
@@ -65,8 +66,8 @@ export default function ContactForm() {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <Card>
           <CardHeader>
-            <CardTitle>Contact me</CardTitle>
-            <CardDescription>Let&apos;s get in touch.</CardDescription>
+            <CardTitle>Contact form</CardTitle>
+            <CardDescription>By using this form you agree to the website&#39;s <Link href="/privacy" className="underline-offset-4 underline text-sm text-muted-foreground hover:text-muted-foreground/50">privacy policy.</Link></CardDescription>
           </CardHeader>
           <CardContent>
             <div className='grid w-full items-center gap-4'>
