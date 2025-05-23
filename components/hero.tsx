@@ -85,8 +85,10 @@ export default function Hero() {
             <Separator className='my-4 bg-white' />
             {heroContent()}
           </div>
-          <Separator className='my-4 bg-white' />
-          {heroFooterContent()}
+          <div>
+            <Separator className='my-4 bg-white' />
+            {heroFooterContent()}
+          </div>
         </div>
       </div>
     </div>
