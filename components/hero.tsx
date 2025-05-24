@@ -8,7 +8,6 @@ import {
   MapPinIcon,
   MailIcon,
   DownloadIcon,
-  ChevronsDown,
   ChevronsDownIcon
 } from "lucide-react"
 import Image from "next/image"
@@ -46,7 +45,7 @@ export default function Hero() {
       <div className='mx-auto flex w-full max-w-3xl justify-end sm:p-8'>
         <div className='flex h-full w-3/5 min-w-60 flex-col justify-between bg-linear-to-r from-black/30 to-black/90 p-8 text-white backdrop-blur sm:rounded-lg'>
           <div
-            className='relative overflow-x-clip overflow-y-scroll scroll-smooth mask-b-from-90% mask-alpha pb-10'
+            className='relative overflow-x-clip overflow-y-scroll scroll-smooth mask-b-from-90% mask-alpha pb-10 -mx-1'
             ref={scrollableHeroContentRef}
             onScroll={handleScroll}
           >
